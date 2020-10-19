@@ -88,7 +88,7 @@ const answers = inquirer.prompt([
     let renderedMarkdown = `
     # ${responses.title} 
 
-    ${badge}
+${badge}
 
   ## Table Of Contents
   - [Description](#description)
@@ -112,13 +112,15 @@ const answers = inquirer.prompt([
   ${responses.license}
   
   ## Contributors
-  ${responses.contributor}
+  ${responses.contributors}
 
   ## Tests
   ${responses.tests}
   
   ## Questions
   [${responses.github}](https://github.com/${responses.github})
+
+
   [${responses.email}](https://github.com/${responses.email})
     `  
     return renderedMarkdown
