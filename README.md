@@ -35,4 +35,7 @@
 
 
   [JusinTorres1@outlook.com](https://github.com/JusinTorres1@outlook.com)
+  
+  ## How To...
+  [Instruction Video](https://drive.google.com/drive/folders/1ENlkCKa1tVI-uBWutEWEyE0w_76ToEfz?usp=sharing)
     
