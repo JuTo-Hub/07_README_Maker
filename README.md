@@ -1,6 +1,9 @@
-  # **A**
 
-  ## **Table Of Contents**
+    # README Creator 
+
+    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+  ## Table Of Contents
   - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -10,23 +13,24 @@
   - [Questions](#questions)
 
   ## Description
-  "a",
+  This application will create an easy README file.
   
   ## Installation
-  "a",
+  This app runs in the command line and renders a README based on user input.
   
   ## Usage 
-  "a",
+  This application is used to make quick README files.
   
   ## License
-  "Apache 2.0",
+  MIT
   
   ## Contributors
-  "whomever"
+  undefined
 
   ## Tests
-  "whatever"
+  None
   
   ## Questions
-  "github": "a",
-  "email": "a"
+  [JuTo-Hub](https://github.com/JuTo-Hub)
+  [JusinTorres1@outlook.com](https://github.com/JusinTorres1@outlook.com)
+    

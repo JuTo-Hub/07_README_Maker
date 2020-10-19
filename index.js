@@ -1,17 +1,26 @@
 const inquirer = require('inquirer');
-const licenses = {
-    "Apache 2.0":"[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)", 
-    "MIT":"[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)", 
-    "FreeBSD":"[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)"
-};
+const licenses = [
+    {
+   type : "Apache 2.0",
+   badge: "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)", 
+    },
+    {
+    type : "MIT",
+    badge : "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)", 
+    },
+    {
+    type : "FreeBSD",
+    badge : "[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)",
+    },
+];
 
 
 const fs = require('fs');
 const answers = inquirer.prompt([
       {
-          type: "input",
-          message: "What is the title of your project?",
-          name: "title"
+        type: "input",
+        message: "What is the title of your project?",
+        name: "title"
       },
       {
         type: "input",
@@ -32,7 +41,7 @@ const answers = inquirer.prompt([
         type: "list",
         message: "Please choose your license",
         name: "license",
-        choices: licenses.keys()
+        choices: licenses.map((o) => o.type)
     },
     {
         type: "input",
@@ -42,32 +51,44 @@ const answers = inquirer.prompt([
     {
         type: "input",
         message: "What is your email address?",
-        name: "contributors"
+        name: "email"
     },
     {
         type: "input",
-        message: "What is your email address?",
-        name: "email"
+        message: "What tests were run?",
+        name: "tests"
+    },
+    {
+        type: "input",
+        message: "Who are your contributors?",
+        name: "contributors"
     },
     ])
   answers.then(function (responses){
     // Use user feedback for... whatever!!
     console.log(responses);
     const filename = `README.md`
-    fs.writeFile(filename, JSON.stringify(responses, null, 2), 'utf8', function (err) {
+    fs.writeFile(filename, render(responses), 'utf8', function (err) {
         if (err) {
             console.log(err);
         } else {
-            console.log("Great. Thank You");
+            console.log("Great. Your file has been created.");
         }
     })
   });
 
   function render(responses){
+    let badge = ""
+    licenses.forEach((l)=>{
+        if(l.type === responses.license){
+            badge = l.badge
+        } 
+    })
+
     let renderedMarkdown = `
     # ${responses.title} 
 
-    ${licenses[responses.license]}
+    ${badge}
 
   ## Table Of Contents
   - [Description](#description)
@@ -88,13 +109,13 @@ const answers = inquirer.prompt([
   ${responses.usage}
   
   ## License
-  ${response.license}
+  ${responses.license}
   
   ## Contributors
-  ${response.contributor}
+  ${responses.contributor}
 
   ## Tests
-  ${response.tests}
+  ${responses.tests}
   
   ## Questions
   [${responses.github}](https://github.com/${responses.github})
