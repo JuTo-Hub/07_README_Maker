@@ -1,5 +1,11 @@
 const inquirer = require('inquirer');
-const licenses = ["Apache 2.0", "MIT", "FreeBSD"];
+const licenses = {
+    "Apache 2.0":"[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)", 
+    "MIT":"[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)", 
+    "FreeBSD":"[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)"
+};
+
+
 const fs = require('fs');
 const answers = inquirer.prompt([
       {
@@ -26,7 +32,7 @@ const answers = inquirer.prompt([
         type: "list",
         message: "Please choose your license",
         name: "license",
-        choices: licenses
+        choices: licenses.keys()
     },
     {
         type: "input",
@@ -37,7 +43,7 @@ const answers = inquirer.prompt([
         type: "input",
         message: "What is your email address?",
         name: "contributors"
-    }
+    },
     {
         type: "input",
         message: "What is your email address?",
@@ -57,19 +63,42 @@ const answers = inquirer.prompt([
     })
   });
 
+  function render(responses){
+    let renderedMarkdown = `
+    # ${responses.title} 
 
-  output = `# READ<E for Justin's project
+    ${licenses[responses.license]}
+
+  ## Table Of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributors](#contributors)
+  - [Tests](#tests)
+  - [Questions](#questions)
+
+  ## Description
+  ${responses.description}
   
-  * here's bullet 1
+  ## Installation
+  ${responses.installation}
+  
+  ## Usage 
+  ${responses.usage}
+  
+  ## License
+  ${response.license}
+  
+  ## Contributors
+  ${response.contributor}
 
-  # table of contents
-  [questions](questions)
-
-  ## questions
-
-  ${responses.question}
-
-  ## license
-
-   Apache 2.0
-  `
+  ## Tests
+  ${response.tests}
+  
+  ## Questions
+  [${responses.github}](https://github.com/${responses.github})
+  [${responses.email}](https://github.com/${responses.email})
+    `  
+    return renderedMarkdown
+  }
