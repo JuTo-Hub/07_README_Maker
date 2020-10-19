@@ -16,7 +16,7 @@
   This application will create an easy README file.
   
   ## Installation
-  This app runs in the command line and renders a README based on user input.
+  This app runs in the command line and renders a README based on user input. Just run node index.js and answer the questions.
   
   ## Usage 
   This application is used to make quick README files.
@@ -25,12 +25,14 @@
   MIT
   
   ## Contributors
-  undefined
+  Justin Torres
 
   ## Tests
-  None
+  NONE
   
   ## Questions
   [JuTo-Hub](https://github.com/JuTo-Hub)
+
+
   [JusinTorres1@outlook.com](https://github.com/JusinTorres1@outlook.com)
     
